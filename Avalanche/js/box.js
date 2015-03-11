@@ -24,7 +24,7 @@ function spawnBox(size, ratio, friction, vex) {
         new droppingBox(
             new GameObject(
                 new Rectangle(x, y, size / ratio, size * ratio),
-                ColorGen.random((-0.0015*Math.pow((-(y+floor.rect.y)/100 - 100), 2) +10)),
+                ColorGen.random((-0.005*Math.pow((-(y+floor.rect.y)/100 - 85), 2) +10)),
                 friction,
                 new Vector2(0, vex)
             )
@@ -35,8 +35,8 @@ function spawnBox(size, ratio, friction, vex) {
 function newHeight() {
     var h = 0;
 
-    if (h > players[0].rect.y - canvas.height * 2.75) {
-        h = players[0].rect.y - canvas.height * 2.75;
+    if (h > players[0].rect.y - canvas.height * 3) {
+        h = players[0].rect.y - canvas.height * 3;
     }
     return Math.round(h);
 }

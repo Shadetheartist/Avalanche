@@ -202,18 +202,11 @@ Player.prototype.update = function () {
 Player.prototype.deadUpdate = function () {
     if (!formIsShowing && (pressed[13] || pressed[32] || pressed[27]))
         aReset();
-		
-	clearTimeout(this.renderTimeout);
-    for(var i = 0; i<this.speedmodresetter.length; i++){
-        clearTimeout(this.speedmodresetter[i]);
-    }
-    if(this.speedMod > 1) this.speedMod = 1;
 }
 
 Player.prototype.jump = function (isOnWall) {
     if (!isOnWall) this.onJump();
     this.jumping = true;
-    if(this.speedMod > 1) this.speedMod = 1;
     this.vex.y -= (this.jumpheight + this.contacting.vex.y / 2) * this.speedMod;
     this.render = playerRender;
 }
@@ -247,7 +240,6 @@ var playerJumpRender = function () {
         ctx.restore();
     }
     //Moving
-
 Player.prototype.hitDetection = function (box) {
     var a = this.rect;
     var b = box.GO.rect;
@@ -368,7 +360,5 @@ Player.prototype.shitDetection = function (box) {
 }
 
 Player.prototype.updateForm = function(){
-    document.getElementById("form_score").value = Math.round(this.score);
-    document.getElementById("form_height").value = Math.round(-Math.floor(this.highestHeight + heightZero) / 100);
-    document.getElementById("form_highest_height").value = Math.round(_highestHeight);
+
 }

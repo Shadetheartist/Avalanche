@@ -21,8 +21,6 @@ var showDebug = false,
     gameOn = true;
 var spawns;
 
-var stars = [];
-
 function init() {
     canvas = document.getElementById("gameCanvas");
     ctx = canvas.getContext("2d");
@@ -36,12 +34,12 @@ function init() {
     aReset();
     spawns = [];
     if (gameOn) {
-        spawns[0] = spawnQue(50, 1, 0.5, 3.6, 1900);
-        spawns[1] = spawnQue(75, 1, 0.5, 3.5, 2100);
-        spawns[2] = spawnQue(100, 1, 0.5, 3.4, 2200);
-        spawns[3] = spawnQue(125, 1, 0.5, 3.4, 5300);
-        spawns[4] = spawnQue(150, 1, 0.5, 3.2, 7600);
-        spawns[5] = spawnQue(340, 1, 0.5, 3, 70000);
+        spawns[5] = spawnQue(50, 1, 0.5, 4, 2200);
+        spawns[0] = spawnQue(75, 1, 0.5, 4, 2200);
+        spawns[1] = spawnQue(150, 1, 0.5, 3.4, 4500);
+        spawns[2] = spawnQue(175, 1, 0.5, 3.3, 7000);
+        spawns[3] = spawnQue(200, 1, 0.5, 3.2, 10000);
+        spawns[4] = spawnQue(350, 1, 0.5, 2.8, 70000);
     } else {
         boxes.push(
             new droppingBox(
@@ -74,28 +72,11 @@ function init() {
             )
         );
     }
-    
-    for(var i = 0; i<500; i++){
-        var offset = 160*-100;
-        stars.push(new Star(Math.random() * canvas.width, offset + Math.random()*canvas.height*16));
-    }
     BGspawnQue(20, .5);
     main();
 }
 
-function Star(x, y){
-    this.x = x;
-    this.y = y;
-    this.blinkcd = new coolDown(Math.random()*1500 + 300);
-    this.blink = false;
-    this.parallaxmod = Math.random()/3 + .3;
-}
-Star.prototype.render = function(){
-    ctx.fillStyle = "#FFF";
-    if(this.blink) ctx.fillRect(this.x, this.y - (cameraOffset) * this.parallaxmod, 2, 2);
-    else ctx.fillRect(this.x, this.y - (cameraOffset) * this.parallaxmod, 1, 1);
-    if(this.blinkcd.isCool()) this.blink = !this.blink;
-};
+
 
 
 ///////////////////////////////////////////////////////////////////////////////render/////////////////////////////////////////////
@@ -130,16 +111,15 @@ function render() {
     ctx.drawImage(backdrop3, 0, bgY3 - cameraOffset / 6, 1000, 600);
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 490 - cameraOffset / 3, canvas.width, 2000);
-	    for (var i = 0; i < backgroundRects.length; i++)
-        backgroundRects[i].draw();
-    ctx.globalAlpha = 0.5;
+    ctx.globalAlpha = 0.2;
     ctx.fillStyle = backGround;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.globalAlpha = 1;
     //end of city
     
     
-
+    for (var i = 0; i < backgroundRects.length; i++)
+        backgroundRects[i].draw();
 
     ctx.fillStyle = bgLavaFilm;
     ctx.fillRect(0, 600, canvas.width, -100000);
@@ -147,8 +127,7 @@ function render() {
 
     ctx.fillStyle = "#000";
     ctx.fillRect(floor.rect.x, floor.rect.y - cameraOffset, floor.rect.w, floor.rect.h);
-    for (var i = 0; i < stars.length; i++)
-        stars[i].render();
+
     for (var i = 0; i < boxes.length; i++)
         boxes[i].GO.draw();
     for (var i = 0; i < stoppedBoxes.length; i++)

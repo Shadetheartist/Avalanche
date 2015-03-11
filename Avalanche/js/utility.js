@@ -113,6 +113,7 @@ function reset(p) {
     pressed[40] = false; // Down
     pressed[37] = false; // Left
     pressed[39] = false; // Right
+
     p.update = p.deadUpdate;
     p.render = function () {}
     var size = 1;
@@ -126,7 +127,6 @@ function reset(p) {
             ));
         }
     }
-	p.speedMod = 1;
 }
 
 function aReset() {
@@ -191,22 +191,14 @@ function randomSign() {
 }
 var focusTimout;
 function showform(){
-    var form = document.getElementById('scoreform');
-    form.className = "submit_score shown";
-    formIsShowing = true;
+
 }
 
 function hideform(){
-    var form = document.getElementById('scoreform');
-    form.className = "submit_score";
-    formIsShowing = false; 
-    focusTimout = null;
-    document.getElementById('form_name_input').blur();
-    aReset();
+
 }
 
 function onsubmitform(){
-    if(document.getElementById('form_name_input').value == "") return false;
     hideform();
     aReset();
 }
@@ -214,14 +206,13 @@ function oncancelform(){
     hideform();
 }
 
-Math.sign = function sign(x) {
+
+Math.prototype.sign = function sign(x) {
     x = +x // convert to a number
     if (x === 0 || isNaN(x))
         return x
     return x > 0 ? 1 : -1
 }
-
-
 
 
 

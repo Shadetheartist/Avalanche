@@ -177,17 +177,16 @@ Player.prototype.onComboUp = function () {
 Player.prototype.onDie = function () {
     if(this.score > this.previousHighScore){
         this.onHighScore();
-    }    
-	clearTimeout(this.renderTimeout);
-    for(var i = 0; i<this.speedmodresetter.length; i++){
-        clearTimeout(this.speedmodresetter[i]);
     }
-	this.speedMod = 1;
-    if(this.highestHeight == _highestHeight || this.score > 75) showform();
+    if(this.highestHeight == _highestHeight) showform();
 }
 Player.prototype.onSquished = function () {
     this.listOfThingsThatHappened.unshift("Wall Jumped off moving");
-
+    clearTimeout(this.renderTimeout);
+    for(var i = 0; i<this.speedmodresetter.length; i++){
+        clearTimeout(this.speedmodresetter[i]);
+    }
+    
     this.score += new Score({
         pos: this.rect.center(),
         timer: 2000,
@@ -225,8 +224,9 @@ Player.prototype.onAscend = function () {
     if(this.highestHeight < _highestHeight)
         _highestHeight = this.rect.y;
     
-    if (-this.rect.y >= (10000*avalanchemod) + heightZero) {
+    if (-this.rect.y >= 10000*avalanchemod + heightZero) {
         AVALANCHE(this);
+        this.onAscend = function(){this.highestHeight = this.rect.y; _highestHeight = this.highestHeight;};
     }
 }
 

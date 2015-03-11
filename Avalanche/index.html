@@ -1,0 +1,110 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Avalanche Game 2</title>
+
+    <style>
+        body {
+            background-image: url(images/htmlbg.jpg);
+            background-color: #890202;
+            animation: fadeIn 2s;
+            -webkit-animation: fadeIn 5s;
+            margin: 0;
+            padding: 0;
+            font-weight: 100;
+			font-family: sans-serif;
+        }
+        canvas {
+            position: relative;
+            display: block;
+            margin: 10px auto;
+            padding: 0;
+            border: 2px solid black;
+            z-index: 1;
+        }
+		.highscore_table{
+			color: white;
+		}
+		.highscore_table td{
+			border: 1px solid grey;
+		}
+        .submit_score {
+            display:inline-block;
+            position: absolute;
+            top: -250px;
+            transition: top 1.5s;
+            width: 200px;
+            height: 200px;
+            left: calc(50% - 100px);
+            background-color: #000;
+			border: 2px solid black;
+            padding: 10px 5px;
+            z-index: 2;
+		}
+        .submit_score h3{
+			color: white;
+            text-align: center;
+		}
+		#form_name_input{
+			border: 0;
+			padding: 5px;
+		}
+		#form_name_input:active, #form_name_input:focus{
+			outline: 0;
+		}
+		.form_button{
+			border: 0;
+			
+		}
+        .submit_score input{
+            display: block;
+            margin: 1px auto;
+			width: 100%;
+		}
+        .shown{
+            top: 150px;
+        }
+        .wrapper{
+            position: relative;
+            margin: 0 auto;
+            width: 925px;
+        }
+    </style>
+    <script src="js/controls.js"></script>
+    <script src="js/utility.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/box.js"></script>
+    <script src="js/minimap.js"></script>
+    <script src="js/graphics.js"></script>
+    <script src="js/particle.js"></script>
+    <script src="js/score.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body onkeydown="Down(event)" onkeyup="Up(event)">
+    <div class="wrapper">
+		<canvas id="gameCanvas" width="925" height="600"></canvas>
+    </div>
+    <script>
+        window.onload = function(){
+            init();
+            _highestHeight = 600;
+        }
+    </script>
+    
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

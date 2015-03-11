@@ -20,8 +20,8 @@ Particle.prototype.update = function () {
                 this.velocity.y *= -0.6;
                 this.rect.y = stoppedBoxes[i].rect.y - this.rect.h;
             }
-            this.velocity.y *= 0.83;
-            this.velocity.x *= 0.9;
+            this.velocity.y *= 0.95;
+            this.velocity.x *= 0.95;
         }
     }
     if (isCollide(this.rect, floor.rect)) {
